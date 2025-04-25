@@ -85,7 +85,7 @@ class MIAdam3(Optimizer):
                 buf_exp_avg.mul_(kappa1).add_(exp_avg)
                 buf_exp_avg2.mul_(kappa1).add_(buf_exp_avg)
                 buf_exp_avg3.mul_(kappa1).add_(buf_exp_avg2)
-                param.addcdiv_(exp_avg, denom, value=-step_size)
+                param.addcdiv_(buf_exp_avg3, denom, value=-step_size)
 
             else :
                 step_size = lr / bias_correction1
